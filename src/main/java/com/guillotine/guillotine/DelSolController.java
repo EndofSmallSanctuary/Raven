@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class DelSolController {
     @Autowired
     ContentResolver resolver;
+    @Autowired
+    ContentCreator creator;
 
 
     @PostMapping("/artificialselector")
@@ -28,13 +30,8 @@ public class DelSolController {
     }
 
     @PostMapping("/contributor")
-    byte[] contributorPresence(@RequestBody Contributor[] contributor){
-        for (Contributor contributor1:
-            contributor ) {
-            System.out.println(contributor1.getUser().getlogin());
-        }
-
-        return new byte[]{};
+    byte[] contributorHtml(@RequestBody Contributor contributor){
+        return creator.create(contributor);
     }
 }
 
